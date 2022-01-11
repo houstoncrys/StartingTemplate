@@ -8,23 +8,27 @@ app = Flask(
 )
 app.config.from_object(Config)
 
-my_message = ""
-def setMessage(message):
-  global my_message
-  my_message=message
-  print(my_message)
+my_to_do_list = []
+def addToDoItem(toDo):
+  global my_to_do_list
+  my_to_do_list.append(toDo)
+
+def printToDoItems(my_to_do_list):
+  for toDo in my_to_do_list:
+    print(toDo)
 
 @app.route('/', methods=['GET', 'POST'])
 def page_one():
   form = MessageForm()
   if form.is_submitted():
     print("made it")
-    setMessage(form.message.data)
+    addToDoItem(form.toDo.data)
     return redirect('/display')
   return render_template('pageOne.html', form=form)
 
 @app.route('/display')
 def page_two():
-  return render_template('pageTwo.html', my_message=my_message)
+  printToDoItems(my_to_do_list)
+  return render_template('pageTwo.html', my_to_do_list=my_to_do_list)
 
 app.run(host='0.0.0.0', port=8080)

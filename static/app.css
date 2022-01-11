@@ -1,11 +1,18 @@
 h1 {
-  color: blueviolet;
+  color: rgba(196, 62, 129, 0.541);
+  font-family: "Lucida Console", "Courier New", monospace;
 }
 
 label {
-  color: cornflowerblue;
+  color: rgb(184, 123, 44);
+  font-family: "Lucida Console", "Courier New", monospace;
 }
 
 p {
-  color: aquamarine;
+  color: rgb(70, 111, 145);
+  font-family: "Lucida Console", "Courier New", monospace;
+}
+
+body {
+  background-color: gainsboro
 }
