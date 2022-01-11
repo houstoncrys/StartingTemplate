@@ -13,10 +13,6 @@ def addToDoItem(toDo):
   global my_to_do_list
   my_to_do_list.append(toDo)
 
-def printToDoItems(my_to_do_list):
-  for toDo in my_to_do_list:
-    print(toDo)
-
 @app.route('/', methods=['GET', 'POST'])
 def page_one():
   form = MessageForm()
@@ -28,7 +24,6 @@ def page_one():
 
 @app.route('/display')
 def page_two():
-  printToDoItems(my_to_do_list)
   return render_template('pageTwo.html', my_to_do_list=my_to_do_list)
 
 app.run(host='0.0.0.0', port=8080)
