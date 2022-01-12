@@ -2,5 +2,9 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 
 class MessageForm(FlaskForm):
-    toDo = StringField('What would you like do?')
-    submit = SubmitField('SEND')
+    toDo = StringField('What would you like to do?')
+    submit = SubmitField('Add')
+
+class RemoveForm(FlaskForm):
+    remove = StringField('What item(s) did you complete?')
+    submit = SubmitField('Remove')

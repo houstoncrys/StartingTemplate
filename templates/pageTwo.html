@@ -4,6 +4,15 @@
   <link rel="stylesheet" href="/static/app.css">
 </head>
 <body>
-  <h1>Your To Do List:</h1>
-  <p>{{ my_to_do_list }}</p>
+  <h1>TO DO LIST:</h1>
+  
+  {% for item in my_to_do_list %}
+      <li>{{item}}</li>
+  {% endfor %}
+
+    <form action="" method="post" novalidate>
+    {{ form.remove.label }}
+    {{ form.remove }}
+    {{ form.submit() }}
+  </form>
 </body>
