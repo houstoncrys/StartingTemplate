@@ -5,14 +5,13 @@
 </head>
 <body>
   <h1>TO DO LIST:</h1>
-  
   {% for item in my_to_do_list %}
-      <li>{{item}}</li>
+    <li>{{item}}</li>
   {% endfor %}
-
-    <form action="" method="post" novalidate>
-    {{ form.remove.label }}
-    {{ form.remove }}
-    {{ form.submit() }}
+<br> 
+  <form action="" method="post" novalidate>
+    {{ formRemove.remove.label }}
+    {{ formRemove.remove }}
+    {{ formRemove.removeSubmit() }}
   </form>
 </body>

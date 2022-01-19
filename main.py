@@ -1,5 +1,6 @@
 from flask import Flask, render_template, redirect
-from form import MessageForm, RemoveForm
+from form import MessageForm
+from formRemove import RemoveForm
 from config import Config
 
 app = Flask(
@@ -15,24 +16,33 @@ def addToDoItem(toDo):
   print(my_to_do_list)
 
 def removeToDoItem(remove):
-  my_to_do_list.remove(remove.upper)
+  global my_to_do_list
+  print(remove)
+  my_to_do_list.remove(remove.upper())
 
 @app.route('/', methods=['GET', 'POST'])
 def page_one():
   form = MessageForm()
+  formRemove = RemoveForm()
+
   if form.is_submitted():
     print("about to add")
     addToDoItem(form.toDo.data)
     return redirect('/display')
-  return render_template('pageOne.html', form=form)
+  # if formRemove.is_submitted():
+  #   print("about to remove")
+  #   removeToDoItem(formRemove.remove.data)
+  #   return redirect('/display')
+  return render_template('pageOne.html', form=form, my_to_do_list=my_to_do_list, formRemove=formRemove)
 
-@app.route('/display')
+@app.route('/display', methods=['GET', 'POST'])
 def page_two():
-  form = RemoveForm()
-  if form.is_submitted():
+  formRemove = RemoveForm()
+  
+  if formRemove.is_submitted():
     print("about to remove")
-    removeToDoItem(form.remove.data)
+    removeToDoItem(formRemove.remove.data)
     return redirect('/display')
-  return render_template('pageTwo.html', my_to_do_list=my_to_do_list, form=form)
+  return render_template('pageTwo.html', my_to_do_list=my_to_do_list, formRemove=formRemove)
 
 app.run(host='0.0.0.0', port=8080)

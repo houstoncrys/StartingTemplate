@@ -3,8 +3,8 @@ from wtforms import StringField, SubmitField
 
 class MessageForm(FlaskForm):
     toDo = StringField('What would you like to do?')
-    submit = SubmitField('Add')
+    addSubmit = SubmitField('Add')
 
-class RemoveForm(FlaskForm):
-    remove = StringField('What item(s) did you complete?')
-    submit = SubmitField('Remove')
+# class RemoveForm(FlaskForm):
+#     remove = StringField('What item(s) did you complete?')
+#     removeSubmit = SubmitField('Remove')
