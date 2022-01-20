@@ -23,26 +23,30 @@ def removeToDoItem(remove):
 @app.route('/', methods=['GET', 'POST'])
 def page_one():
   form = MessageForm()
-  formRemove = RemoveForm()
 
-  if form.is_submitted():
-    print("about to add")
-    addToDoItem(form.toDo.data)
-    return redirect('/display')
-  # if formRemove.is_submitted():
-  #   print("about to remove")
-  #   removeToDoItem(formRemove.remove.data)
-  #   return redirect('/display')
-  return render_template('pageOne.html', form=form, my_to_do_list=my_to_do_list, formRemove=formRemove)
+  if form.validate_on_submit():
+    if form.addSubmit.data:
+      print("about to add")
+      addToDoItem(form.toDo.data)
+      return redirect('/display')
+    elif form.removeSubmit.data:
+      print("about to remove")
+      removeToDoItem(form.toDo.data)
+      return redirect('/display')
+  return render_template('pageOne.html', form=form, my_to_do_list=my_to_do_list)
 
 @app.route('/display', methods=['GET', 'POST'])
 def page_two():
   formRemove = RemoveForm()
   
   if formRemove.is_submitted():
-    print("about to remove")
-    removeToDoItem(formRemove.remove.data)
-    return redirect('/display')
+  # if formRemove.validate_on_submit():
+    # if formRemove.removeSubmit.data:
+      print("about to remove")
+      removeToDoItem(formRemove.remove.data)
+      return redirect('/display')
+    # elif formRemove.back:
+    #   return redirect('/')
   return render_template('pageTwo.html', my_to_do_list=my_to_do_list, formRemove=formRemove)
 
 app.run(host='0.0.0.0', port=8080)
